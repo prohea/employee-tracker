@@ -1,6 +1,10 @@
-const { default: inquirer } = require('inquirer');
+// Dependencies
+const inquirer = require('inquirer');
 const viewAllEmployees = require('../lib/viewallemployees');
 const {db} = require('./connection');
+
+//Landing Message
+console.log('Welcome to Employee Tracker');
 
 function questions() {
     console.log('');
