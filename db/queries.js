@@ -1,4 +1,5 @@
 const { default: inquirer } = require('inquirer');
+const viewallemployees = require('../lib/viewallemployees');
 const {db} = require('./connection');
 
 function questions() {
@@ -23,6 +24,37 @@ function questions() {
             },
         ])
         .then(function (data) {
-            switch
+            switch(data.nav) {
+                case 'View All Employees';
+                    viewAllEmployees();
+                    break;
+                case 'View All Roles';
+                    viewAllRoles();
+                    break;
+                case 'View All Departments';
+                    viewAllDepartments();
+                    break;
+                case 'View All Employees by Department';
+                    viewEmployeeDepartment();
+                    break;
+                case 'Add Employee';
+                    addEmployee();
+                    break;
+                case 'Add Department';
+                    addDepartment();
+                    break;
+                case 'Add Role';
+                    addRole();
+                    break;
+                case 'Update Employee Role';
+                    updateEmployeeRole();
+                    break;
+                case 'Quit';
+                    quit();
+                    break;
+            }
         })
+        .catch(function (err) {
+            console.log(err);
+        });
 }
