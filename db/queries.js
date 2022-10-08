@@ -1,5 +1,5 @@
 const { default: inquirer } = require('inquirer');
-const viewallemployees = require('../lib/viewallemployees');
+const viewAllEmployees = require('../lib/viewallemployees');
 const {db} = require('./connection');
 
 function questions() {

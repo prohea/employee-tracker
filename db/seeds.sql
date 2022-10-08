@@ -4,13 +4,13 @@ USE employeeTracker_db;
 
 CREATE TABLE department(
     id  INTEGER(11) AUTO_INCREMENT NOT NULL,
-    name VARCHAR(50) NOT NULL,
+    name VARCHAR(30) NOT NULL,
     PRIMARY Key (id)
     );
 
     CREATE TABLE role(
     id  INTEGER(11) AUTO_INCREMENT NOT NULL,
-    title VARCHAR(50) NOT NULL,
+    title VARCHAR(30) NOT NULL,
     salary DECIMAL (8,2) NOT NULL,
     PRIMARY Key (id),
         FOREIGN KEY (department_id)
@@ -19,8 +19,8 @@ CREATE TABLE department(
     
     CREATE TABLE employee(
     id  INTEGER(11) AUTO_INCREMENT NOT NULL,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
     role_id INTEGER(11) NULL,
     manager_id INTEGER(11) NULL,
     PRIMARY Key (id),
