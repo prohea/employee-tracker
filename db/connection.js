@@ -9,7 +9,7 @@ const connection  = mysql.createConnection(
 
         password: '',
 
-        database: 'employee-db'
+        database: 'employees_db'
     },
     console.log(`Connected to database.`)
 );
