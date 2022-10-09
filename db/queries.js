@@ -1,64 +1,92 @@
 // Dependencies
 const inquirer = require('inquirer');
-const viewAllEmployees = require('../lib/viewallemployees');
 const {db} = require('./connection');
+const mysql2 = require('mysql2');
 
-//Landing Message
-console.log('Welcome to Employee Tracker');
+const connection  = mysql2.createConnection(
+    {
+        host: 'localhost',
 
-function questions() {
-    console.log('');
+        user: 'root',
+
+        password: '',
+
+        database: 'employeeTracker_db'
+    },
+    console.log(`Connected to database.`)
+);
+
+const questions = () => {
+    console.log('questions start');
     inquirer
-        .prompt([
+        .prompt(
             {
                 type: 'list',
-                name: 'nav',
+                name: 'action',
                 message: 'What would you like to do?',
                 choices: [
-                    'View All Employees',
-                    'View All Roles',
-                    'View All Departments',
-                    'View All Employees by Department',
-                    'Add Employee',
                     'Add Department',
                     'Add Role',
+                    'Add Employee',
+                    'View All Departments',
+                    'View All Roles',
+                    'View All Employees',
                     'Update Employee Role',
+                    'Update Employee Managers',
+                    'view Employees by Manager',
+                    'Delete Departments',
+                    'Delete Roles',
+                    'Delete Employees',
+                    'View Total Budget of a Department',
                     'Quit'
                 ],
-            },
-        ])
-        .then(function (data) {
-            switch(data.nav) {
-                case 'View All Employees';
-                    viewAllEmployees();
-                    break;
-                case 'View All Roles';
-                    viewAllRoles();
-                    break;
-                case 'View All Departments';
-                    viewAllDepartments();
-                    break;
-                case 'View All Employees by Department';
-                    viewEmployeeDepartment();
-                    break;
-                case 'Add Employee';
-                    addEmployee();
-                    break;
-                case 'Add Department';
+        })
+
+        .then((answer) => {
+            switch(answer.action) {
+                case 'Add Department':
                     addDepartment();
                     break;
-                case 'Add Role';
+                case 'Add Role':
                     addRole();
                     break;
-                case 'Update Employee Role';
+                case 'Add Employee':
+                    addEmployee();
+                    break;
+                case 'View All Departments':
+                    viewAllDepartments();
+                    break;
+                case 'View All Roles':
+                    viewAllRoles();
+                    break;
+                case 'View All Employees':
+                    viewAllEmployees();
+                    break;
+                case 'Update Employee Role':
                     updateEmployeeRole();
                     break;
-                case 'Quit';
-                    quit();
+                case 'Update Employee by Manager':
+                    updateEmployeeManagers();
+                    break;
+                case 'Delete Departments':
+                    deleteDepartments();
+                    break;
+                case 'Delete Roles':
+                    deleteRoles();
+                    break;
+                case 'Delete Employees':
+                    deleteEmployees();
+                    break;
+                case 'View Total Budget of a Department':
+                    viewTotalBudget();
+                    break;
+                case 'Quit':
+                    connection.end();
+                    break;
+                
+                default:
+                    console.log(`Invalid action: ${answer.action}`);
                     break;
             }
-        })
-        .catch(function (err) {
-            console.log(err);
         });
-}
+    };

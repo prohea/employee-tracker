@@ -1,7 +1,7 @@
 const mysql = require('mysql2');
 
 //Database Connection
-const connection  = mysql.createConnection(
+const connection  = mysql2.createConnection(
     {
         host: 'localhost',
 
@@ -9,7 +9,7 @@ const connection  = mysql.createConnection(
 
         password: '',
 
-        database: 'employees_db'
+        database: 'employeeTracker_db'
     },
     console.log(`Connected to database.`)
 );
