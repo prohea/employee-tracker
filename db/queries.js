@@ -90,3 +90,90 @@ const questions = () => {
             }
         });
     };
+
+    const addDepartment = () => {
+        inquirer
+        .prompt([
+            {
+            name: 'name',
+            type: 'input',
+            message: 'What is the name of the department?'
+            }
+        ])
+        .then((answer) =>  {
+            connection.query(
+                'INSERT INTO department SET ?',
+                {
+                    name: answer.name
+                },
+                (err) => {
+                    if (err) throw err;
+                    console.log('New department was added successfully!');
+                    questions();
+                }
+            );
+        });
+    };
+
+    const addRole = () => {
+        inquirer
+        .prompt([
+            {
+            name: 'title',
+            type: 'input',
+            message: 'What is the name of your role?'
+            },
+            {
+            name: 'salary',
+            type: 'input',
+            message: 'What is the salary of the role?'
+            },
+            {
+            name: 'department',
+            type: 'list',
+            message: 'What is the department?',
+            choices: ['1','2', '3']
+            },
+
+        ])
+        .then((answer) =>  {
+            connection.query(
+                'INSERT INTO department SET ?',
+                {
+                    name: answer.name
+                },
+                (err) => {
+                    if (err) throw err;
+                    console.log('New department was added successfully!');
+                    questions();
+                }
+            );
+        });
+    };
+
+    
+    const addDepartment = () => {
+        inquirer
+        .prompt([
+            {
+            name: 'name',
+            type: 'input',
+            message: 'What is the name of the department?'
+            }
+        ])
+        .then((answer) =>  {
+            connection.query(
+                'INSERT INTO department SET ?',
+                {
+                    name: answer.name
+                },
+                (err) => {
+                    if (err) throw err;
+                    console.log('New department was added successfully!');
+                    questions();
+                }
+            );
+        });
+    };
+
+    
