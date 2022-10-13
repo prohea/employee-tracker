@@ -138,13 +138,14 @@ const questions = () => {
         ])
         .then((answer) =>  {
             connection.query(
-                'INSERT INTO department SET ?',
+                'INSERT INTO role SET ?',
                 {
-                    name: answer.name
+                    title: answer.title,
+                    salary: answer.salery
                 },
                 (err) => {
                     if (err) throw err;
-                    console.log('New department was added successfully!');
+                    console.log('New role was added successfully!');
                     questions();
                 }
             );
@@ -152,28 +153,183 @@ const questions = () => {
     };
 
     
-    const addDepartment = () => {
+    const addEmployee = () => {
         inquirer
         .prompt([
             {
-            name: 'name',
+            name: 'first_name',
             type: 'input',
-            message: 'What is the name of the department?'
-            }
+            message: 'What is the employee first name?'
+            },
+            {
+            name: 'last_name',
+            type: 'input',
+            message: 'What is the employee last name?'
+            },
+            {
+            name: 'role',
+            type: 'list',
+            message: 'What is the employee role?',
+            choices: ['Sales Lead', 'Salesperson', 'Lead Engineer']
+            },
+            {
+            name: 'manager',
+            type: 'list',
+            message: 'What is the employee manager?',
+            choices: ['Sales Lead', 'Salesperson', 'Lead Engineer']
+            },
         ])
         .then((answer) =>  {
             connection.query(
-                'INSERT INTO department SET ?',
+                'INSERT INTO employee SET ?',
                 {
-                    name: answer.name
+                   first_name: answer.first_name
                 },
+                {
+                    last_name: answer.last_name
+                 },
                 (err) => {
                     if (err) throw err;
-                    console.log('New department was added successfully!');
+                    console.log('New employee was added successfully!');
                     questions();
                 }
             );
         });
     };
 
+    const addEmployee = () => {
+        inquirer
+        .prompt([
+            {
+            name: 'first_name',
+            type: 'input',
+            message: 'What is the employee first name?'
+            },
+            {
+            name: 'last_name',
+            type: 'input',
+            message: 'What is the employee last name?'
+            },
+            {
+            name: 'role',
+            type: 'list',
+            message: 'What is the employee role?',
+            choices: ['Sales Lead', 'Salesperson', 'Lead Engineer']
+            },
+            {
+            name: 'manager',
+            type: 'list',
+            message: 'What is the employee manager?',
+            choices: ['Sales Lead', 'Salesperson', 'Lead Engineer']
+            },
+        ])
+        .then((answer) =>  {
+            connection.query(
+                'INSERT INTO employee SET ?',
+                {
+                   first_name: answer.first_name
+                },
+                {
+                    last_name: answer.last_name
+                 },
+                (err) => {
+                    if (err) throw err;
+                    console.log('New employee was added successfully!');
+                    questions();
+                }
+            );
+        });
+    };
+
+    const addEmployee = () => {
+        inquirer
+        .prompt([
+            {
+            name: 'first_name',
+            type: 'input',
+            message: 'What is the employee first name?'
+            },
+            {
+            name: 'last_name',
+            type: 'input',
+            message: 'What is the employee last name?'
+            },
+            {
+            name: 'role',
+            type: 'list',
+            message: 'What is the employee role?',
+            choices: ['Sales Lead', 'Salesperson', 'Lead Engineer']
+            },
+            {
+            name: 'manager',
+            type: 'list',
+            message: 'What is the employee manager?',
+            choices: ['Sales Lead', 'Salesperson', 'Lead Engineer']
+            },
+        ])
+        .then((answer) =>  {
+            connection.query(
+                'INSERT INTO employee SET ?',
+                {
+                   first_name: answer.first_name
+                },
+                {
+                    last_name: answer.last_name
+                 },
+                (err) => {
+                    if (err) throw err;
+                    console.log('New employee was added successfully!');
+                    questions();
+                }
+            );
+        });
+    };
+
+     const addEmployee = () => {
+        inquirer
+        .prompt([
+            {
+            name: 'first_name',
+            type: 'input',
+            message: 'What is the employee first name?'
+            },
+            {
+            name: 'last_name',
+            type: 'input',
+            message: 'What is the employee last name?'
+            },
+            {
+            name: 'role',
+            type: 'list',
+            message: 'What is the employee role?',
+            choices: ['Sales Lead', 'Salesperson', 'Lead Engineer']
+            },
+            {
+            name: 'manager',
+            type: 'list',
+            message: 'What is the employee manager?',
+            choices: ['Sales Lead', 'Salesperson', 'Lead Engineer']
+            },
+        ])
+        .then((answer) =>  {
+            connection.query(
+                'INSERT INTO employee SET ?',
+                {
+                   first_name: answer.first_name
+                },
+                {
+                    last_name: answer.last_name
+                 },
+                (err) => {
+                    if (err) throw err;
+                    console.log('New employee was added successfully!');
+                    questions();
+                }
+            );
+        });
+    };
+
+const viewAllDepartments = () => {
+    
+}
     
