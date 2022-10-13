@@ -16,7 +16,7 @@ const connection = mysql2.createConnection(
 	console.log(`Connected to database.`)
 );
 
-const cTable = require('console.table');
+const cTable = require("console.table");
 
 const questions = () => {
 	console.log("questions start");
@@ -133,7 +133,7 @@ const addRole = () => {
 				name: "department",
 				type: "list",
 				message: "What is the department?",
-				choices: ["1", "2", "3"],
+				choices: ["1", "2", "3", "4"],
 			},
 		])
 		.then((answer) => {
@@ -169,13 +169,31 @@ const addEmployee = () => {
 				name: "role",
 				type: "list",
 				message: "What is the employee role?",
-				choices: ["Sales Lead", "Salesperson", "Lead Engineer"],
+				choices: [
+					"Sales Lead",
+					"Salesperson",
+					"Lead Engineer",
+					"Software Engineer",
+					" Account Manager",
+					"Accountant",
+					"Legal Team",
+					"Lawyer",
+				],
 			},
 			{
 				name: "manager",
 				type: "list",
 				message: "What is the employee manager?",
-				choices: ["Sales Lead", "Salesperson", "Lead Engineer"],
+				choices: [
+					"Sales Lead",
+					"Salesperson",
+					"Lead Engineer",
+					"Software Engineer",
+					" Account Manager",
+					"Accountant",
+					"Legal Team",
+					"Lawyer",
+				],
 			},
 		])
 		.then((answer) => {
@@ -249,4 +267,3 @@ const updateEmployeeManagers = () => {
 		}
 	);
 };
-
