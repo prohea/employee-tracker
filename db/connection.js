@@ -1,15 +1,16 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
+require('dotenv').config()
 
 //Database Connection
-const connection  = mysql2.createConnection(
+const connection  = mysql.createConnection(
     {
-        host: 'localhost',
+        host: process.env.MYSQL_HOST,
 
-        user: 'root',
+        user: process.env.MYSQL_USER,
 
-        password: '',
+        password: process.env.MYSQL_PW,
 
-        database: 'employeeTracker_db'
+        database: process.env.MYSQL_NAME,
     },
     console.log(`Connected to database.`)
 );

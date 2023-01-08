@@ -1,23 +1,6 @@
 // Dependencies
 const inquirer = require("inquirer");
-const { db } = require("./connection");
-const mysql2 = require("mysql2");
-
-// Create the Connection
-const connection = mysql2.createConnection(
-	{
-		host: "localhost",
-        // Your port
-        port: 3001,
-        // Your username
-		user: "root",
-        // Your password
-		password: "",
-		database: "employeeTracker_db",
-	},
-	console.log(`Connected to database.`)
-);
-
+const connection = require("./db/connection");
 const cTable = require("console.table");
 
 // Prompts the questions for what the user wants to do
@@ -29,6 +12,11 @@ const questions = () => {
 			name: "action",
 			message: "What would you like to do?",
 			choices: [
+				{
+					name: 	"Add Department",
+					value: "ADD_DEPT" 
+				},
+		
 				"Add Department",
 				"Add Role",
 				"Add Employee",
@@ -47,6 +35,7 @@ const questions = () => {
 		})
 
 		.then((answer) => {
+			console.log(answer);
 			switch (answer.action) {
 				case "Add Department":
 					addDepartment();
@@ -90,7 +79,8 @@ const questions = () => {
 
 				default:
 					console.log(`Invalid action: ${answer.action}`);
-					break;
+					process.exitCode=1;
+					process.exit()
 			}
 		});
 };
@@ -122,44 +112,7 @@ const addDepartment = () => {
 		});
 };
 
-const addRole = () => {
-    // Prompt to add the role
-	inquirer
-		.prompt([
-			{
-				name: "title",
-				type: "input",
-				message: "What is the name of your role?",
-			},
-			{
-				name: "salary",
-				type: "input",
-				message: "What is the salary of the role?",
-			},
-			{
-				name: "department",
-				type: "list",
-				message: "What is the department?",
-				choices: ["1", "2", "3", "4"],
-			},
-		])
-		.then((answer) => {
-            // Insert the new information into the database
-			connection.query(
-				"INSERT INTO role SET ?",
-				{
-					title: answer.title,
-					salary: answer.salery,
-				},
-				(err) => {
-					if (err) throw err;
-					console.log("New role was added successfully!");
-                    // Asks the user if they would like to do anything else
-					questions();
-				}
-			);
-		});
-};
+
 
 const addEmployee = () => {
     // Prompt to add an employee
@@ -302,11 +255,6 @@ const updateEmployeeManagers = () => {
 		}
 	);
 };
-
 // Connect to mysql server and database
-connection.connect((err) => {
-    if (err) throw err;
-    // Run questions
     questions();
-});
 
