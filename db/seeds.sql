@@ -1,37 +1,31 @@
-
+DROP DATABASE IF EXISTS employeeTracker_db;
+CREATE DATABASE employeeTracker_db;
 USE employeeTracker_db;
 
-INSERT INTO department (name)
-VALUES
-      ('Sales'),
-      ('Engineering'),
-      ('Finance'),
-      ('Legal');
+CREATE TABLE department(
+    department_id INTEGER AUTO_INCREMENT NOT NULL,
+    name VARCHAR(30) NOT NULL,
+    PRIMARY KEY(department_id)
+    );
 
-INSERT INTO role 
-  (title, salary, department_id)
-VALUES 
-  ('Sales Lead, 100000, 1'),
-  ('Salesperson, 80000, 2'),
-  ('Lead Engineer, 150000, 3'),
-  ('Software Engineer, 12000, 4'),
-  ('Account Manager, 16000, 5'),
-  ('Accountant, 125000, 6'),
-  ('Legal Team Lead, 250000, 7'),
-  ('Lawyer, 190000, 8');
+CREATE TABLE role(
+    role_id INTEGER AUTO_INCREMENT NOT NULL,
+    title VARCHAR(30) NOT NULL,
+    salary DECIMAL NOT NULL,
+    department_id INT,
+    PRIMARY KEY(role_id),
+        FOREIGN KEY (department_id)
+        REFERENCES department(department_id)
+    );
+    
+  CREATE TABLE employee(
+    id INTEGER AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    role_id INTEGER NULL,
+    manager_id INTEGER NULL,
+    PRIMARY KEY(id),
+        FOREIGN KEY(role_id)
+        REFERENCES role(role_id),
+    );
 
-  INSERT INTO employee
-    (first_name, last_name, role_id, manager_id)
-  VALUES 
-    ('John', 'Doe', 1, NULL),
-    ('Mike', 'Chan', 2, 1),
-    ('Ashley', 'Rodriguez', 3, NULL),
-    ('Kevin', 'Tupic', 4, 3),
-    ('Kunal', 'Sing', 5, NULL),
-    ('Malia', 'Brown', 6, 5),
-    ('Sarah', 'Lourd', 7, NULL),
-    ('Tom', 'Allen', 8, 7);
-
-SELECT * FROM employeeTracker_db.department;
-SELECT * FROM employeeTracker_db.employee;
-SELECT * FROM employeeTracker_db.role;

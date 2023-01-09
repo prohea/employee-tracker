@@ -1,12 +1,5 @@
 function viewAllDepart() {
-	// View Department
-	connection.query("SELECT * FROM department", (err, res) => {
-		if (err) throw err;
-		// Log the results of the SELECT statement
-		console.table(res);
-		// Ends connection
-		questions();
-	});
+	co
 }
 
 export default viewAllDepart;
