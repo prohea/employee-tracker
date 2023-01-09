@@ -1,4 +1,4 @@
-function viewAllDepartments() {
+function viewAllDepart() {
 	// View Department
 	connection.query("SELECT * FROM department", (err, res) => {
 		if (err) throw err;
@@ -9,4 +9,4 @@ function viewAllDepartments() {
 	});
 }
 
-export default viewAllDepartments;
+export default viewAllDepart;

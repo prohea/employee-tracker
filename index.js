@@ -13,11 +13,62 @@ const questions = () => {
 			message: "What would you like to do?",
 			choices: [
 				{
-					name: 	"Add Department",
-					value: "ADD_DEPT" 
+					name: "Add Department",
+					value: "ADD_DEPT",
 				},
-		
-				"Add Department",
+				{
+					name: "Add Role",
+					value: "ADD_DEPT",
+				},
+				{
+					name: "Add Department",
+					value: "ADD_DEPT",
+				},
+				{
+					name: "Add Department",
+					value: "ADD_DEPT",
+				},
+				{
+					name: "Add Department",
+					value: "ADD_DEPT",
+				},
+				{
+					name: "Add Department",
+					value: "ADD_DEPT",
+				},
+				{
+					name: "Add Department",
+					value: "ADD_DEPT",
+				},
+				{
+					name: "Add Department",
+					value: "ADD_DEPT",
+				},
+				{
+					name: "Add Department",
+					value: "ADD_DEPT",
+				},
+				{
+					name: "Add Department",
+					value: "ADD_DEPT",
+				},
+				{
+					name: "Add Department",
+					value: "ADD_DEPT",
+				},
+				{
+					name: "Add Department",
+					value: "ADD_DEPT",
+				},
+				{
+					name: "Add Department",
+					value: "ADD_DEPT",
+				},
+				{
+					name: "Add Department",
+					value: "ADD_DEPT",
+				},
+
 				"Add Role",
 				"Add Employee",
 				"View All Departments",
@@ -79,106 +130,11 @@ const questions = () => {
 
 				default:
 					console.log(`Invalid action: ${answer.action}`);
-					process.exitCode=1;
-					process.exit()
+					process.exitCode = 1;
+					process.exit();
 			}
 		});
 };
 
-const addDepartment = () => {
-    // Prompt for the department name 
-	inquirer
-		.prompt([
-			{
-				name: "name",
-				type: "input",
-				message: "What is the name of the department?",
-			},
-		])
-		.then((answer) => {
-            // Insert the department name
-			connection.query(
-				"INSERT INTO department SET ?",
-				{
-					name: answer.name,
-				},
-				(err) => {
-					if (err) throw err;
-					console.log("New department was added successfully!");
-                    // Asks the user if they would like to do anything else
-					questions();
-				}
-			);
-		});
-};
-
-
-
-const addEmployee = () => {
-    // Prompt to add an employee
-	inquirer
-		.prompt([
-			{
-				name: "first_name",
-				type: "input",
-				message: "What is the employee first name?",
-			},
-			{
-				name: "last_name",
-				type: "input",
-				message: "What is the employee last name?",
-			},
-			{
-				name: "role",
-				type: "list",
-				message: "What is the employee role?",
-				choices: [
-					"Sales Lead",
-					"Salesperson",
-					"Lead Engineer",
-					"Software Engineer",
-					" Account Manager",
-					"Accountant",
-					"Legal Team",
-					"Lawyer",
-				],
-			},
-			{
-				name: "manager",
-				type: "list",
-				message: "What is the employee manager?",
-				choices: [
-					"Sales Lead",
-					"Salesperson",
-					"Lead Engineer",
-					"Software Engineer",
-					" Account Manager",
-					"Accountant",
-					"Legal Team",
-					"Lawyer",
-				],
-			},
-		])
-		.then((answer) => {
-            // Insert the new employee information to the employee table
-			connection.query(
-				"INSERT INTO employee SET ?",
-				{
-					first_name: answer.first_name,
-				},
-				{
-					last_name: answer.last_name,
-				},
-				(err) => {
-					if (err) throw err;
-					console.log("New employee was added successfully!");
-                    // Asks the user if they would like to do anything else
-					questions();
-				}
-			);
-		});
-};
-
 // Connect to mysql server and database
-    questions();
-
+questions();

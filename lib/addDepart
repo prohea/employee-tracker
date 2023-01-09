@@ -1,0 +1,28 @@
+function addDepart() {
+	// Prompt for the department name
+	inquirer
+		.prompt([
+			{
+				name: "name",
+				type: "input",
+				message: "What is the name of the department?",
+			},
+		])
+		.then((answer) => {
+			// Insert the department name
+			connection.query(
+				"INSERT INTO department SET ?",
+				{
+					name: answer.name,
+				},
+				(err) => {
+					if (err) throw err;
+					console.log("New department was added successfully!");
+					// Asks the user if they would like to do anything else
+					questions();
+				}
+			);
+		});
+}
+
+export default addDepart;
