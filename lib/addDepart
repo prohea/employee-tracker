@@ -1,5 +1,5 @@
 const inquirer  = require("inquirer");
-const { connection } = require("../db/connection");
+const { db } = require("../db/connection");
 //CRUD Functions
 //Create
 
@@ -12,20 +12,23 @@ function addDepart() {
 				type: "input",
 				name: "department",
 				message: "What is the new department's name?",
+				validate: function (name) {
+					if (!name) {
+						console.log("Please enter a name")
+						return false;
+					}
+					return true;
+				}
 			},
 		])
-		.then(function (data) {
-			connection.query(
-				"INSERT INTO department SET ?",
-				{
-					name: data.depart,
-				},
-				function (err, res) {
-					if (err) throw err;
-					viewAllDepart();
-				}
-			);
-		});
-}
+		.then((ans) => {
+			const department = new Department(ans.name);
+			newDept(department);
+			console.log("Department added");
+			departments = getDept();
+			deptArr = deptArrFill();
+			return questions();
+				})
+			};
 
 module.exports = addDepart();

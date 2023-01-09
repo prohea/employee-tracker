@@ -1,35 +1,42 @@
-USE employeeTracker_db
+--Enables creation of a new DB and attempts to drop DB if it exists
+DROP DATABASE IF EXISTS employeeTracker_db;
 
-INSERT INTO department (name) VALUES ("Sales");
-INSERT INTO department (name) VALUES ("Engineering");
-INSERT INTO department (name) VALUES ("Finance");
-INSERT INTO department (name) VALUES ("Legal");
-INSERT INTO department (name) VALUES ("Management");
+CREATE DATABASE employeeTracker_db;
 
-INSERT INTO role (title, salary, department_id) VALUES ("Sales Lead", 100000, 1);
-INSERT INTO role (title, salary, department_id) VALUES ("Salesperson", 80000, 2);
-INSERT INTO role (title, salary, department_id) VALUES ("Lead Engineer", 150000, 3);
-INSERT INTO role (title, salary, department_id) VALUES ("Software Engineer", 12000, 4);
-INSERT INTO role (title, salary, department_id) VALUES ("Account Manager", 16000, 5);
-INSERT INTO role (title, salary, department_id) VALUES ("Accountant", 125000, 6);
-INSERT INTO role (title, salary, department_id) VALUES ("Legal Team Lead", 250000, 7);
-INSERT INTO role (title, salary, department_id) VALUES ("Lawyer", 190000, 8);
+USE employeeTracker_db;
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id VALUES ("John", "Doe", 1, NULL);
-INSERT INTO employee (first_name, last_name, role_id, manager_id VALUES ("Mike", "Chan", 2, 1);
-INSERT INTO employee (first_name, last_name, role_id, manager_id VALUES ("Ashley", "Rodriguez", 3, NULL);
-INSERT INTO employee (first_name, last_name, role_id, manager_id VALUES ("Kevin", "Tupic", 4, 3);
-INSERT INTO employee (first_name, last_name, role_id, manager_id VALUES ("Kunal", "Sing", 5, NULL);
-INSERT INTO employee (first_name, last_name, role_id, manager_id VALUES ("Malia", "Brown", 6, 5);
-INSERT INTO employee (first_name, last_name, role_id, manager_id VALUES ("Sarah", "Lourd", 7, NULL);
-INSERT INTO employee (first_name, last_name, role_id, manager_id VALUES ("Tom", "Allen", 8, 7);
+--Dropping tables for clean slate
+DROP TABLE IF EXISTS department;
 
-UPDATE employee SET manager_id=3 WHERE id=1;
-UPDATE employee SET manager_id=1 WHERE id=2;
-UPDATE employee SET manager_id=9 WHERE id=3;
-UPDATE employee SET manager_id=3 WHERE id=4;
-UPDATE employee SET manager_id=9 WHERE id=5;
-UPDATE employee SET manager_id=2 WHERE id=6;
-UPDATE employee SET manager_id=9 WHERE id=7;
-UPDATE employee SET manager_id=7 WHERE id=8;
-UPDATE employee SET manager_id=9 WHERE id=10;
+DROP TABLE IF EXISTS roles;
+
+DROP TABLE IF EXISTS employee;
+
+--Create table for department, roles, and employess
+CREATE TABLE department(
+    id INTEGER(11) AUTO_INCREMENT,
+    name VARCHAR(30) NOT NULL,
+    PRIMARY KEY
+    );
+
+CREATE TABLE roles(
+    id INTEGER(11) AUTO_INCREMENT NOT NULL,
+    title VARCHAR(30) NOT NULL,
+    salary DECIMAL(10,2) NOT NULL,
+    depart_id INT(11),
+    PRIMARY KEY,
+        FOREIGN KEY (depart_id)
+        REFERENCES department(id)
+    );
+    
+  CREATE TABLE employee(
+    id INTEGER(30) AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    role_id INTEGER(11),
+    manager_id INTEGER(11),
+    PRIMARY KEY,
+        FOREIGN KEY(role_id)
+        REFERENCES roles(id),
+        FOREIGN KEY (mgr_id) REFERENCES roles(id)
+    );
