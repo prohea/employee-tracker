@@ -1,5 +1,20 @@
+const { default: inquirer } = require("inquirer");
+const { connection } = require("../db/connection");
+//CRUD Functions
+//Create
+
 function viewAllDepart() {
-	co
+	console.log("View All Departments");
+	connection.query("SELECT * FROM department", function (err, res) {
+		if (err) throw err;
+		console.table(
+			"-----------------------------",
+			"All Departments:",
+			"-----------------------------",
+			res
+		);
+		questions();
+	});
 }
 
-export default viewAllDepart;
+module.exports = viewAllDepart();

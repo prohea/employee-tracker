@@ -1,5 +1,7 @@
-const { default: inquirer } = require("inquirer");
-const connection = require("../db/connection");
+const inquirer  = require("inquirer");
+const { connection } = require("../db/connection");
+//CRUD Functions
+//Create
 
 function addDepart() {
 	console.log("Add Department");
