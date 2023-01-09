@@ -1,13 +1,11 @@
 // Dependencies
 const inquirer = require("inquirer");
-const connection = require("./db/connection");
-const cTable = require("console.table");
-const library = require("./lib");
+const db = require("./db/connection");
 
 //Setup Database connection
-connection.connect(function (err) {
+db.connect(function (err) {
 	if (err) throw err;
-	console.log("User connected to tracker as id: " + connection.threadId + "\n");
+	console.log("Connected to database.");
 	questions();
 });
 
