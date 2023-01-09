@@ -3,29 +3,29 @@ CREATE DATABASE employeeTracker_db;
 USE employeeTracker_db;
 
 CREATE TABLE department(
-    department_id INTEGER AUTO_INCREMENT NOT NULL,
+    department_id INTEGER(11) AUTO_INCREMENT NOT NULL,
     name VARCHAR(30) NOT NULL,
-    PRIMARY KEY(department_id)
+    PRIMARY Key(id)
     );
 
 CREATE TABLE role(
-    role_id INTEGER AUTO_INCREMENT NOT NULL,
-    title VARCHAR(30) NOT NULL,
-    salary DECIMAL NOT NULL,
-    department_id INT,
-    PRIMARY KEY(role_id),
-        FOREIGN KEY (department_id)
-        REFERENCES department(department_id)
+    role_id INTEGER(11) AUTO_INCREMENT NOT NULL,
+    title VARCHAR(50) NOT NULL,
+    salary DECIMAL(8,2) NOT NULL,
+    department_id INT(11) NULL,
+    PRIMARY Key(id),
+        FOREIGN KEY (depart_id)
+        REFERENCES department(id)
     );
     
   CREATE TABLE employee(
-    id INTEGER AUTO_INCREMENT NOT NULL,
+    id INTEGER(30) AUTO_INCREMENT NOT NULL,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
-    role_id INTEGER NULL,
-    manager_id INTEGER NULL,
-    PRIMARY KEY(id),
+    role_id INTEGER(11) NULL,
+    manager_id INTEGER(11) NULL,
+    PRIMARY Key(id),
         FOREIGN KEY(role_id)
-        REFERENCES role(role_id),
+        REFERENCES role(id),
     );
 

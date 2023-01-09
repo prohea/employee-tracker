@@ -15,4 +15,4 @@ const connection = mysql.createConnection(
 	console.log(`Connected to database.`)
 );
 
-module.exports = { connection };
+module.exports = connection();
