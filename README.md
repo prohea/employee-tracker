@@ -30,7 +30,7 @@ THEN I am prompted to select an employee to update and their new role and this i
 ## Resources
 
 ## Technologies Used
-node, inquirer
+node, inquirer, dotenv, console.table, mysql2
 
 ## Deployed Project
-[Employee-Tracker](https://prohea.github.io/) Website
+![Employee-Tracker](./Assets/employeetracker.png) https://github.com/prohea/Wonder-Weather
