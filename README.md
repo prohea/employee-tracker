@@ -33,4 +33,4 @@ THEN I am prompted to select an employee to update and their new role and this i
 node, inquirer, dotenv, console.table, mysql2
 
 ## Deployed Project
-![Employee-Tracker](./Assets/employeetracker.png) https://github.com/prohea/Wonder-Weather
+![Employee-Tracker](./Assets/employeetracker.png) 
