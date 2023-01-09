@@ -1,9 +1,9 @@
 module.exports = {
-    config: {
-        host: 'localhost',
-        port: '3001',
-        user: 'root',
-        password: '',
-        database: 'employeeTracker_db'
-    }
-}
+	config: {
+		host: "localhost",
+		port: "3001",
+		user: "root",
+		password: "",
+		database: "employeeTracker_db",
+	},
+};
